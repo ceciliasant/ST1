@@ -1,6 +1,6 @@
 % use_module(library(clpq)).  
 
-% {A = B * C, B = 5}. % won't give exact values
+% {A = B * C, B = 5}. % wil not give exact values
 
 % {A = 20, B = 5, C = X}.
 
@@ -8,14 +8,35 @@
 
 % {A = B / 3, B = 12}.
 
-% --------------------------------------------
+:- use_module(library(clpq)).  
+
+mult(A, B, C) :- {A = B * C}.
+
+% Ex:
+% ?- mult(A, 5, C).
+% ?- mult(20, B, 4).
+
+div(A, B, C) :- {A = B / C}.
+
+% Ex:
+% ?- div(A, 12, 3).
+% ?- div(4, B, C).
+
+% -------------------------------------------------------------------------------------------
+:- use_module(library(clpq)).  
 
 %% linear equation and linear inequality
 
 % use_module(library(clpq)). 
 % {X + 2*Y = 5, Y >= 1}.
 
-% finds general solution, doesn't give values to X or Y because Y can vary as long as it is greater than or equal to 1.
+% finds general solution, does not give values to X or Y because Y can vary as long as it is greater than or equal to 1.
+
+lin_eq(X, Y) :- {X + 2*Y = 5, Y >= 1}.
+
+% Ex:
+% ?- lin_eq(X, Y).
+% ?- lin_eq(1, Y).
 
 % --------------------------------------------
 
@@ -35,6 +56,17 @@
 % {A=<4}, entailed(A=\=5).
 % {A=<4}, entailed(A=\=3).
 
+:- use_module(library(clpq)).  
+
+check_entailed(A) :- 
+    {A =< 4}, 
+    entailed(A =\= 5).
+
+% Ex:
+% ?- check_entailed(A).
+% ?- {A =< 4}, entailed(A =\= 3).
+%  A=4,3,2,1, entailed->verifica se A nunca pode ser 3, o que é falso
+
 % --------------------------------------------
 
 %% Supremum
@@ -44,11 +76,36 @@
 
 %  introduces auxiliary variables
 
-%% vs Maximize
+:- use_module(library(clpq)).  
+
+supremum(X, Y, Z, Sup) :- 
+    { 2*X+Y =< 16, 
+      X+2*Y =< 11, 
+      X+3*Y =< 15, 
+      Z = 30*X+50*Y}, 
+    sup(Z, Sup).
+
+% Ex
+% ?- supremum(X, Y, Z, Sup).
+
+%% vs Maximize ---------------------------------------------------------
 
 % { 2*X+Y =< 16, X+2*Y =< 11, X+3*Y =< 15, Z = 30*X+50*Y}, maximize(Z).
 
 % returns X and Y values as well as Z
+
+:- use_module(library(clpq)).  
+
+find_max(X, Y, Z) :- 
+    { 2*X+Y =< 16, 
+      X+2*Y =< 11, 
+      X+3*Y =< 15, 
+      Z = 30*X+50*Y}, 
+      maximize(Z).
+
+% Exemplo interativo:
+% ?- find_max(X, Y, Z).
+
 
 % --------------------------------------------
 
@@ -56,9 +113,9 @@
 
 % use_module(library(clpq)). 
 
-% find_min(X) :-  
-%     { X + 3 >= 10 },  % X must be at least 7  
-%     minimize(X).      % Finds the smallest possible X
+find_min(X) :-  
+     { X + 3 >= 10 },  % X must be at least 7  
+     minimize(X).      % Finds the smallest possible X
 
 % % find_min(X).
 
