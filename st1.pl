@@ -111,7 +111,7 @@ find_max(X, Y, Z) :-
 
 %% Minimize
 
-% use_module(library(clpq)). 
+use_module(library(clpq)). 
 
 find_min(X) :-  
      { X + 3 >= 10 },  % X must be at least 7  
@@ -124,7 +124,7 @@ find_min(X) :-
 %% Mortgage
 
 % imprecise library clpr; replace clpr with clpq to get exact results.
-:- use_module(library(clpr)).
+use_module(library(clpr)).
 
 mg(P,T,I,B,MP):-
     { T = 1,

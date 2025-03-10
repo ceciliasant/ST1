@@ -1,0 +1,43 @@
+Study of tools - 1
+-------------------
+
+- by rule, groups of 2-3 students
+- prepare slides and demo code
+- 15 min. presentation + 10 min. demo & questions
+- each group presents a different tool
+
+- some evaluation criteria:
+- - coverage (breadth, depth)
+- - highlight of main functionalities
+- - clarity, pedagogical quality
+- - a good balance of the previous points for the slot of 15+10 min.
+
+Suggestion: start by understanding the selected tool/API and build
+a demo; then prepare the presentation to provide context and explain
+the demo.
+
+Submit presentation (pdf) and demo code at: https://classroom.github.com/a/5TC3BmdK
+As group name, use your student numbers, e.g. 111111_222222_333333
+Deadline: 2025/03/12, 24h
+
+More than evaluation moments, the STs are learning moments, so: do your best and relax :-)
+
+
+Proposed tools
+================
+
+Constraint Logic Programming (este tema dá para dois grupos)
+https://www.swi-prolog.org/pldoc/man?section=clp
+https://www.swi-prolog.org/pldoc/man?section=clpb (boolean variables)
+https://www.swi-prolog.org/pldoc/man?section=clpfd (finite domains)
+
+-> https://www.swi-prolog.org/pldoc/man?section=clpqr (rationals and reals)
+-> https://www.swi-prolog.org/pldoc/man?section=chr (CHR: Constraint Handling Rules)
+
+Wordnet (um grupo)
+https://wordnet.princeton.edu/
+https://www.swi-prolog.org/pack/file_details/wordnet/prolog/wn.pl
+
+Probabilistic Logic Programming (um grupo)
+https://dtai.cs.kuleuven.be/problog/
+
