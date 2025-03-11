@@ -45,9 +45,11 @@ lin_eq(X, Y) :- {X + 2*Y = 5, Y >= 1}.
 % use_module(library(clpq)).  % rational (exact)
 % use_module(library(clpr)).  % real (floating point)
 
-% clpr:{Ar+Br=10}, Ar=Br, clpq:{Aq+Bq=10}, Aq=Bq.
+%clpr:{Ar+Br=10}, Ar=Br, clpq:{Aq+Bq=10}, Aq=Bq.
 
-
+% Ex:
+% ?- clpq:{X = 1/3}.
+% ?- clpr:{X = 1/3}.
 % --------------------------------------------
 
 %% Entailed
@@ -65,7 +67,7 @@ check_entailed(A) :-
 % Ex:
 % ?- check_entailed(A).
 % ?- {A =< 4}, entailed(A =\= 3).
-%  A=4,3,2,1, entailed->verifica se A nunca pode ser 3, o que é falso
+%  A=4,3,2,1, entailed->verifica se A nunca pode ser 3, o que é false
 
 % --------------------------------------------
 
@@ -111,7 +113,7 @@ find_max(X, Y, Z) :-
 
 %% Minimize
 
-use_module(library(clpq)). 
+:- use_module(library(clpq)). 
 
 find_min(X) :-  
      { X + 3 >= 10 },  % X must be at least 7  
