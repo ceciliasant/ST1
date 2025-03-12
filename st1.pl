@@ -42,8 +42,8 @@ lin_eq(X, Y) :- {X + 2*Y = 5, Y >= 1}.
 
 %% Use both libraries
 
-% use_module(library(clpq)).  % rational (exact)
-% use_module(library(clpr)).  % real (floating point)
+%:- use_module(library(clpq)).  % rational (exact)
+%:- use_module(library(clpr)).  % real (floating point)
 
 %clpr:{Ar+Br=10}, Ar=Br, clpq:{Aq+Bq=10}, Aq=Bq.
 
@@ -71,7 +71,7 @@ check_entailed(A) :-
 
 % --------------------------------------------
 
-%% Supremum
+%% Supremum -  retorna o max da função objetivo, mas não atribui valores às variáveis
 
 % use_module(library(clpq)). 
 % { 2*X+Y =< 16, X+2*Y =< 11, X+3*Y =< 15, Z = 30*X+50*Y}, sup(Z, Sup).
@@ -113,15 +113,14 @@ find_max(X, Y, Z) :-
 
 %:- use_module(library(clpq)).
 
-%% infimum
+%% infimum - retorna o min da função objetivo, mas não atribui valores às variáveis
 
 infimum(X, Y, Z, Inf) :- 
-    { 2*X + Y >= 6, 
-      X + 2*Y >= 2, 
-      X + 3*Y >= 4, 
-      Z = 30*X + 50*Y,
-      Z >= 0 },
-      inf(Z, Inf).
+    {X + Y >= 3, 
+     X >= 0, 
+     Y >= 0, 
+     Z = 3*X + 5*Y},
+     inf(Z, Inf).
 
 % ?- infimum(X, Y, Z, Inf).
 
@@ -162,5 +161,10 @@ mg(P,T,I,B,MP):-
 % --------------------------------------------
 
 %% Meta-programming
+%:-use_module(library(clpq)).
+
+%?- {X + Y >= 3, X >= 0, Y >= 0, Z = 3*X + 5*Y}, bb_inf([X,Y], Z, Inf).
+%inf quando as variáveis podem assumir valores fracionários e você deseja uma solução rápida.
+%bb_inf quando as variáveis devem ser inteiras ou quando o problema é discreto.
 
 % {2*A+B+C=10,C-D=E,A<10}, dump([A,B,C,D,E],[a,b,c,d,e],Constraints).
