@@ -23,7 +23,7 @@ div(A, B, C) :- {A = B / C}.
 % ?- div(4, B, C).
 
 % -------------------------------------------------------------------------------------------
-:- use_module(library(clpq)).  
+%:- use_module(library(clpq)).  
 
 %% linear equation and linear inequality
 
@@ -58,7 +58,7 @@ lin_eq(X, Y) :- {X + 2*Y = 5, Y >= 1}.
 % {A=<4}, entailed(A=\=5).
 % {A=<4}, entailed(A=\=3).
 
-:- use_module(library(clpq)).  
+%:- use_module(library(clpq)).  
 
 check_entailed(A) :- 
     {A =< 4}, 
@@ -78,7 +78,7 @@ check_entailed(A) :-
 
 %  introduces auxiliary variables
 
-:- use_module(library(clpq)).  
+%:- use_module(library(clpq)).  
 
 supremum(X, Y, Z, Sup) :- 
     { 2*X+Y =< 16, 
@@ -96,7 +96,7 @@ supremum(X, Y, Z, Sup) :-
 
 % returns X and Y values as well as Z
 
-:- use_module(library(clpq)).  
+%:- use_module(library(clpq)).  
 
 find_max(X, Y, Z) :- 
     { 2*X+Y =< 16, 
@@ -111,22 +111,36 @@ find_max(X, Y, Z) :-
 
 % --------------------------------------------
 
-%% Minimize
+%:- use_module(library(clpq)).
 
-:- use_module(library(clpq)). 
+%% infimum
+
+infimum(X, Y, Z, Inf) :- 
+    { 2*X + Y >= 6, 
+      X + 2*Y >= 2, 
+      X + 3*Y >= 4, 
+      Z = 30*X + 50*Y,
+      Z >= 0 },
+      inf(Z, Inf).
+
+% ?- infimum(X, Y, Z, Inf).
+
+%% Vs Minimize -------------------------------
+
+%:- use_module(library(clpq)). 
 
 find_min(X) :-  
      { X + 3 >= 10 },  % X must be at least 7  
      minimize(X).      % Finds the smallest possible X
 
-% % find_min(X).
+% ?-  find_min(X).
 
 % --------------------------------------------
 
 %% Mortgage
 
 % imprecise library clpr; replace clpr with clpq to get exact results.
-use_module(library(clpr)).
+%use_module(library(clpr)).
 
 mg(P,T,I,B,MP):-
     { T = 1,
